@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+
+    <link rel="shortcut icon" href="calculator.ico">
+    <title>תרגול כפל לפסיכומטרי</title>
+    <style>
+        * {
+            user-select: none;
+        }
+
+        *:focus-visible,
+        *:focus {
+            outline: none !important;
+        }
+
+        html,
+        body {
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #008080;
+            color: whitesmoke;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 1.5rem;
+        }
+
+        #exercise {
+            margin-top: 1.5rem;
+            background-color: #fff;
+            padding: 1rem;
+            width: 20rem;
+            display: inline-block;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+            color: #333333;
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            margin: 0.5rem 0;
+            border-radius: 5px;
+            border: 1.5px solid rgb(152, 152, 152);
+            font-size: 1.2rem;
+        }
+
+        #keyboard {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .keys {
+            display: flex;
+            font-size: 2rem;
+            background-color: #3ba173;
+            color: #fff;
+            width: 5.5rem;
+            height: 4.5rem;
+            margin: 0.25rem;
+            justify-content: center;
+            align-items: center;
+            transition: cubic-bezier(0.165, 0.84, 0.44, 1) 0.25s;
+        }
+
+        button {
+            background-color: #FDB813;
+            width: 100%;
+            margin: 0.5rem 0;
+            border-radius: 5px;
+            border: 2px rgb(255, 255, 255);
+            font-size: 1.2rem;
+            padding: 0.4rem 0;
+            color: #fff;
+            font-weight: 600;
+            transition: cubic-bezier(0.165, 0.84, 0.44, 1) 0.25s;
+        }
+
+        .keys:active,
+        button:active {
+            filter: brightness(0.8);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>פתרי את התרגילים</h1>
+    <div id="exercise">
+        <h2></h2>
+        <input type="number" />
+        <div id="keyboard">
+            <div class="keys">1</div>
+            <div class="keys">2</div>
+            <div class="keys">3</div>
+            <div class="keys">4</div>
+            <div class="keys">5</div>
+            <div class="keys">6</div>
+            <div class="keys">7</div>
+            <div class="keys">8</div>
+            <div class="keys">9</div>
+            <div class="keys">-</div>
+            <div class="keys">0</div>
+            <div class="keys">C</div>
+        </div>
+        <button> בדוק </button>
+    </div>
+    <script>
+        $(function () {
+            genrateNums();
+            $("button").on("click", CheckAnswer);
+            $(".keys").on("click", keyPress);
+        });
+
+        function keyPress() {
+            if ($(this).text() === "C") {
+                $("input").val(" ");
+            }
+            else if ($(this).text() !== "-") {
+                $("input").val(Number($("input").val() + $(this).text()));
+            }
+        }
+
+        let num1, num2;
+        function genrateNums() {
+            num1 = Math.floor(Math.random() * 19) + 2;
+            if (num1 < 6) num2 = Math.floor(Math.random() * 9) + 12;
+            else if (num1 < 11) num2 = Math.floor(Math.random() * 2) + 11;
+            else if (num1 < 13) num2 = Math.floor(Math.random() * 5) + 6;
+            else num2 = Math.floor(Math.random() * 4) + 2;
+            $("#exercise>h2").text(num1 + " × " + num2);
+        }
+
+        function CheckAnswer() {
+            if (num1 * num2 == $("input").val()) alert("תשובה נכונה !");
+            else alert(num1 * num2);
+            $("input").val(" ");
+            genrateNums();
+        }
+    </script>
+</body>
+
+</html>
