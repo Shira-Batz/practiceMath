@@ -149,8 +149,8 @@
             num1 = Math.floor(Math.random() * 19) + 2; // num1 2 - 20
             if (num1 <= 5) num2 = Math.floor(Math.random() * 9) + 12; // if num1 <= 5, num2 12 - 20
             else if (num1 <= 10) num2 = Math.floor(Math.random() * 2) + 11; // if 6 <= num1 <= 10, num2 11 - 12
-            else if (num1 == 11) num2 = Math.floor(Math.random() * 5) + 6;  // if num1 == 11, num2 6 - 10
-            else if (num1 == 12) num2 = Math.floor(Math.random() * 9) + 2;  // if num1 == 12, num2 2 - 10
+            else if (num1 == 11) num2 = Math.floor(Math.random() * 7) + 6;  // if num1 == 11, num2 6 - 12
+            else if (num1 == 12) num2 = Math.floor(Math.random() * 11) + 2;  // if num1 == 12, num2 2 - 12
             else num2 = Math.floor(Math.random() * 4) + 2;  // if 13 <= num1 <= 20, num2 2 - 5
             $("#exercise>h2").text(num1 + " × " + num2);
         }
